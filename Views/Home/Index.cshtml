@@ -1,0 +1,31 @@
+﻿@model List<ToDo>
+
+@{
+    ViewData["Title"] = "To-Do List";
+}
+
+<form asp-action="Filter" method="post">
+    <select name="filter" multiple>
+        <option value="Work">Work</option>
+        <option value="Home">Home</option>
+        <option value="Exercise">Exercise</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<table class="table">
+    <tr>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Status</th>
+    </tr>
+    @foreach(var task in Model){
+        <td>@task.Description</td>
+        <td>@task.DueDate.ToShortDateString()</td>
+        <td>@task.Category</td>
+        <td>@task.Status</td>
+    }
+</table>
+<a asp-action="Add" class="btn btn-primary">Add New Task</a>
+
+
